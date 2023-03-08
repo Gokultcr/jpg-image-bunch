@@ -1,6 +1,6 @@
 # jpg-image-bunch
 
-This code is used to read a set of images of individual trees of four different species, resize them, and save them to a file as a serialized Bunch object using joblib.//
+This code is used to read a set of images of individual trees of four different species, resize them, and save them to a file as a serialized Bunch object using joblib.\n
 **
 import os
 import numpy as np
