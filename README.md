@@ -1,61 +1,18 @@
 # jpg-image-bunch
 
-This code is used to read a set of images of individual trees of four different species, resize them, and save them to a file as a serialized Bunch object using joblib.\n
-**
-import os
-import numpy as np
-import joblib
-import cv2 **    These lines import the necessary libraries for the code to run.
+This code is used to read a set of images of individual trees of four different species, resize them, and save them to a file as a serialized Bunch object using joblib.
 
-**
-dire = "D:/Individual_Trees_photos/exatctcrop"
-categories = ['European beech', 'European silver fir', 'Norway spruce', 'Sessile oak']
-**  These lines define the directory where the images are stored and the categories of the different species of trees. 
+## Dependencies
+This code requires the following libraries:
 
+* os
+* numpy
+* joblib
+* cv2
 
-**
-SIZE = 200
-images = []
-labels = []
-**   These lines define the size of the images after resizing and create empty lists to store the images and their labels.
-
-**
-for category in categories:
-    path = os.path.join(dire, category)
-    label = categories.index(category)
-    
-    for img in os.listdir(path):
-        imgpath = os.path.join(path, img)
-        tree_img = cv2.imread(imgpath, 0)
-        try:
-            tree_img = cv2.resize(tree_img, (SIZE, SIZE))
-            images.append(tree_img)
-            labels.append(label)
-        except Exception as e:
-            pass
-**   These lines loop through each category of trees and read in each image from the corresponding directory. Each image is resized and added to the images list, while the corresponding label is added to the labels list. Any exceptions thrown during the resizing process are ignored.
-
-**
-images = np.array(images)
-labels = np.array(labels)
-** These lines convert the images and labels lists to NumPy arrays.
-
-**
-feature_names = ['images']
-target_names = categories
-** These lines define the feature and target names for the Bunch object.
-
-**
-data = {}
-data["data"] = images
-data["target"] = labels
-data["feature_names"] = feature_names
-data["target_names"] = target_names
-** These lines create a dictionary to store the data, with the images and labels arrays as the data and target values, respectively. The feature and target names are also added to the dictionary.
-
-**
-joblib.dump(data, 'tree_images.joblib')
-** This line saves the dictionary as a serialized Bunch object to a file named 'tree_images.joblib; using the joblib.dump() function.
-
-
-
+## Usage
+1. First, make sure that all the required libraries are installed.
+2. Clone this repository and navigate to the root directory.
+3. Make sure that the images of the trees are stored in the 'D:/Individual_Trees_photos/exatctcrop' directory, and that the directory contains subdirectories for each of the four species of trees.
+4. Run the  file using a Python interpreter.
+5. After the code finishes executing, a serialized Bunch object will be saved to a file named tree_images.joblib.
